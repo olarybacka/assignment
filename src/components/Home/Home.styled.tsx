@@ -14,5 +14,10 @@ export const ContentContainer = styled.article`
   flex-wrap: wrap;
   justify-content: center;
   row-gap: 50px;
-  margin: 50px 0;
+  margin: 0 0 40px;
+`
+
+export const Title = styled.h1`
+  margin: 20px 0 0;
+  font-size: 24px;
 `

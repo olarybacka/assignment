@@ -2,7 +2,7 @@ import { fetchData, getAuthHeader } from 'utils/api'
 import { useEffect, useState } from 'react'
 import { commonParams } from './Home.utils'
 import { useHistory } from 'react-router-dom'
-import { VideoItemsContainer, ContentContainer } from './Home.styled'
+import { VideoItemsContainer, ContentContainer, Title } from './Home.styled'
 import { VideoItem } from 'components/VideoItem'
 import { useMutation } from 'react-query'
 import { Placeholder } from '../VideoItem/Placeholder'
@@ -52,11 +52,11 @@ const Home = () => {
 
   return (
     <section>
-      <h1> Home </h1>
+      <Title> Home </Title>
 
       <ContentContainer>
         <section>
-          <h2>List 1</h2>
+          <p>List 1</p>
           <VideoItemsContainer>
             {isLoading
               ? Array(5)
@@ -71,7 +71,7 @@ const Home = () => {
         </section>
 
         <section>
-          <h2>List 2</h2>
+          <p>List 2</p>
           <VideoItemsContainer>
             {isLoading
               ? Array(5)
