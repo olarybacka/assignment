@@ -3,6 +3,9 @@ import { useMutation } from 'react-query'
 import { useEffect, useState } from 'react'
 import { params } from './Home.utils'
 import { useHistory } from 'react-router-dom'
+import { VideoItemsContainer } from './Home.styled'
+import { VideoItem } from 'components/VideoItem'
+import { Placeholder } from '../../components/VideoItem/Placeholder'
 
 const getItems = () =>
   fetchData('/Media/GetMediaList', params, {
@@ -13,7 +16,7 @@ const Home = () => {
   const [items, setItems] = useState([])
   const { push } = useHistory()
 
-  const { mutate } = useMutation(getItems, {
+  const { mutate, isLoading } = useMutation(getItems, {
     onError: ({ message }: Error) => {
       push('/')
     },
@@ -30,9 +33,15 @@ const Home = () => {
     <section>
       <div> Home </div>
       <article>
-        {items?.map((item: any) => (
-          <div key={item.Id}>{item.Title}</div>
-        ))}
+        <VideoItemsContainer>
+          {isLoading
+            ? Array(5)
+                .fill(null)
+                .map((_i, idx) => <Placeholder key={idx} />)
+            : items?.map((item: any) => (
+                <VideoItem key={item.Id} item={item} />
+              ))}
+        </VideoItemsContainer>
       </article>
     </section>
   )

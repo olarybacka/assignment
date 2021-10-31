@@ -1,5 +1,5 @@
 export const params = {
-  PageSize: 25,
+  PageSize: 15,
   PageNumber: 1,
   IncludeCount: true,
   MediaListId: 3,
