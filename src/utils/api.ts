@@ -1,5 +1,6 @@
+import axios from 'axios'
+
 interface Options {
-  method?: string
   headers?: { [key: string]: string }
   body?: string
 }
@@ -12,9 +13,10 @@ export const getAuthHeader = () => ({
   Authorization: `Bearer ${localStorage.getItem('token')}`,
 })
 
-export const fetchData = (url: string, options?: Options) =>
-  fetch(API + url, {
-    ...options,
-    method: options?.method || 'POST',
-    headers: { ...options?.headers, ...mainHeaders },
-  }).then((response) => response.json())
+export const fetchData = (url: string, body: any, options?: Options) =>
+  axios
+    .post(API + url, { ...body }, { ...mainHeaders, ...options })
+    .then(({ data }) => data)
+    .catch((error) => {
+      throw new Error(error.response.data.MessageKey)
+    })

@@ -1,30 +1,22 @@
 import logo from 'assets/logo.svg'
-import { useHistory } from 'react-router-dom';
-import { useMutation } from 'react-query';
-import { v4 as uuidv4 } from 'uuid'
-import { fetchData } from 'utils/api'
-import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
+import { useMutation } from 'react-query'
+import { useEffect } from 'react'
+import { authorize } from 'utils/authorize'
 
 const SplashScreen = () => {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
-  const { mutate, isLoading, isError } = useMutation(() => fetchData('/Authorization/SignIn', {
-    body: JSON.stringify({
-      Device: {
-        PlatformCode: 'WEB',
-        Name: uuidv4(),
-      },
-    })
-  }), {
+  const { mutate } = useMutation(authorize, {
+    onError: (error) => {
+      console.log(`error`, error)
+    },
     onSuccess: ({ AuthorizationToken }) => {
       localStorage.setItem('token', AuthorizationToken.Token)
       push('/home')
     },
-    onError: () => { 
-      alert('there was an error')
-    },
   })
-  
+
   useEffect(() => {
     mutate()
   }, [mutate])
