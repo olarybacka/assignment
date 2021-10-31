@@ -20,11 +20,6 @@ export const ItemContainer = styled.button`
   align-items: center;
   cursor: pointer;
 
-  img {
-    width: 150px;
-    position: absolute;
-  }
-
   @media (max-width: 550px) {
     height: 200px;
   }
@@ -38,6 +33,11 @@ export const Image = styled.div<Props>`
   background-size: cover;
   width: 100%;
   height: 100%;
+`
+
+export const Img = styled.img`
+  width: 150px;
+  position: absolute;
 `
 
 export const Title = styled.div`
@@ -57,14 +57,10 @@ const blink = keyframes`
     background-position: 400px 0
   }
 `
+
 export const loadingAnimationStyles = () => css`
   animation: ${blink} 1s linear infinite forwards;
-  background: linear-gradient(
-    to right,
-    ${grey} 8%,
-    '#222' 18%,
-    ${grey} 33%
-  );
+  background: linear-gradient(to right, ${grey} 8%, #222 18%, ${grey} 33%);
   background-size: 800px 100%;
   position: relative;
 `

@@ -1,7 +1,7 @@
 import './App.css'
-import SplashScreen from 'containers/SplashScreen'
+import SplashScreen from 'components/SplashScreen'
 import { Route, Switch } from 'react-router-dom'
-import Home from 'containers/Home'
+import Home from 'components/Home'
 import PrivateRoute from 'routes/PrivateRoute'
 
 function App() {

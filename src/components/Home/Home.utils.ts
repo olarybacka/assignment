@@ -1,8 +1,8 @@
-export const params = {
-  PageSize: 15,
+export const commonParams = {
+  PageSize: 30,
   PageNumber: 1,
   IncludeCount: true,
-  MediaListId: 3,
+  MediaListId: 2,
   IncludeCategories: false,
   IncludeMedia: true,
   IncludeImages: true,

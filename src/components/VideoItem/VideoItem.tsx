@@ -1,17 +1,13 @@
 import { FC, useState } from 'react'
-import { ItemContainer, Image, Title } from './VideoItem.styled'
+import { ItemContainer, Image, Title , Img} from './VideoItem.styled'
 import ReactPlayer from 'react-player'
 import { useMutation } from 'react-query'
 import { fetchData, getAuthHeader } from 'utils/api'
-import playIcon from 'assets/pi.jpeg';
+import playIcon from 'assets/pi.jpeg'
+import { Entity } from 'components/Home/Home'
 
 type VideoItemProps = {
-  item: {
-    Title: string
-    Images: [{ ImageTypeCode: string; Url: string }]
-    Id: number
-    MediaTypeCode?: string
-  }
+  item: Entity
 }
 
 type VideoData = {
@@ -51,11 +47,11 @@ export const VideoItem: FC<VideoItemProps> = ({ item }) => {
         <ReactPlayer
           playing
           controls
-          url="https://d1n3vpqjhjvv6k.cloudfront.net:443/Asset/5060fb7b996e4c44ba00c3265e73b96f/Content/54ec9d0f6cdf47f0bad54637a90825b2"
+          url={videoUrl}
         />
       ) : (
         <>
-        {item.MediaTypeCode === "VOD" && <img src={playIcon} alt=""/>}
+          {item.MediaTypeCode !== 'PACKAGE' && <Img src={playIcon} alt="" />}
           <Title>{item.Title}</Title>
           <Image url={frameImage ? frameImage.Url : placeholder} />
         </>
