@@ -1,10 +1,11 @@
 import { FC, useState } from 'react'
-import { ItemContainer, Image, Title , Img} from './VideoItem.styled'
+import { ItemContainer, Image, Title, Img } from './VideoItem.styled'
 import ReactPlayer from 'react-player'
 import { useMutation } from 'react-query'
 import { fetchData, getAuthHeader } from 'utils/api'
 import playIcon from 'assets/pi.jpeg'
 import { Entity } from 'components/Home/Home'
+import { placeholderImage } from './Placeholder'
 
 type VideoItemProps = {
   item: Entity
@@ -13,8 +14,6 @@ type VideoItemProps = {
 type VideoData = {
   ContentUrl: string
 }
-const placeholder =
-  'https://d-art.ppstatic.pl/kadry/k/r/1/af/21/613f0a716999d_o_medium.jpg'
 
 export const VideoItem: FC<VideoItemProps> = ({ item }) => {
   const [videoUrl, setVideoUrl] = useState('')
@@ -37,6 +36,7 @@ export const VideoItem: FC<VideoItemProps> = ({ item }) => {
   const frameImage = item.Images.find(
     (image) => image.ImageTypeCode === 'FRAME',
   )
+
   const playVideo = (id: number) => {
     mutate(id)
   }
@@ -44,16 +44,12 @@ export const VideoItem: FC<VideoItemProps> = ({ item }) => {
   return (
     <ItemContainer onClick={() => playVideo(item.Id)}>
       {videoUrl ? (
-        <ReactPlayer
-          playing
-          controls
-          url={videoUrl}
-        />
+        <ReactPlayer playing controls url={videoUrl} />
       ) : (
         <>
           {item.MediaTypeCode !== 'PACKAGE' && <Img src={playIcon} alt="" />}
           <Title>{item.Title}</Title>
-          <Image url={frameImage ? frameImage.Url : placeholder} />
+          <Image url={frameImage ? frameImage.Url : placeholderImage} />
         </>
       )}
     </ItemContainer>

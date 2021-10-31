@@ -9,7 +9,12 @@ import { Placeholder } from '../VideoItem/Placeholder'
 
 export type Entity = {
   Title: string
-  Images: [{ ImageTypeCode: string; Url: string }]
+  Images: [
+    {
+      ImageTypeCode: string
+      Url: string
+    },
+  ]
   Id: number
   MediaTypeCode?: string
 }
@@ -28,6 +33,7 @@ const Home = () => {
       }),
     {
       onError: ({ message }: Error) => {
+        // handleError(message)
         push('/')
       },
       onSuccess: ({ Entities }: MediaList) => {
@@ -46,16 +52,16 @@ const Home = () => {
 
   return (
     <section>
-      <div> Home </div>
+      <h1> Home </h1>
 
       <ContentContainer>
         <section>
-          List 1
+          <h2>List 1</h2>
           <VideoItemsContainer>
             {isLoading
               ? Array(5)
                   .fill(null)
-                  .map((_i, idx) => <Placeholder key={idx} />)
+                  .map((_i, index) => <Placeholder key={index} />)
               : items
                   .slice(0, 15)
                   .map((item: Entity, index) => (
@@ -65,12 +71,12 @@ const Home = () => {
         </section>
 
         <section>
-          List 2
+          <h2>List 2</h2>
           <VideoItemsContainer>
             {isLoading
               ? Array(5)
                   .fill(null)
-                  .map((_i, idx) => <Placeholder key={idx} />)
+                  .map((_i, index) => <Placeholder key={index} />)
               : items
                   .slice(15, 30)
                   .map((item: Entity, index) => (

@@ -2,7 +2,7 @@ import logo from 'assets/logo.svg'
 import { useHistory } from 'react-router-dom'
 import { useMutation } from 'react-query'
 import { useEffect } from 'react'
-import { authorize } from 'utils/authorize'
+import { authorize } from './authorize'
 
 const SplashScreen = () => {
   const { push } = useHistory()
