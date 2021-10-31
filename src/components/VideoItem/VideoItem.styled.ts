@@ -5,14 +5,25 @@ interface Props {
 }
 
 const grey = '#131313'
-export const ItemContainer = styled.div`
+export const ItemContainer = styled.button`
   display: flex;
+  color: #fff;
+  border: none;
   height: 300px;
   background: #111;
   align-items: center;
   position: relative;
   flex-shrink: 0;
+  padding: 0;
   aspect-ratio: 16 / 9;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  img {
+    width: 150px;
+    position: absolute;
+  }
 
   @media (max-width: 550px) {
     height: 200px;
@@ -35,6 +46,7 @@ export const Title = styled.div`
   padding: 20px;
   font-size: 32px;
   bottom: 0;
+  left: 0;
 `
 
 const blink = keyframes`
@@ -45,29 +57,18 @@ const blink = keyframes`
     background-position: 400px 0
   }
 `
-
-type LoadingAnimationStylesProps = {
-  backgroundColor?: string
-  blinkColor?: string
-  duration?: string
-}
-
-export const loadingAnimationStyles = ({
-  backgroundColor = grey,
-  blinkColor = '#222',
-  duration = '1s',
-}: LoadingAnimationStylesProps) => css`
-  animation: ${blink} ${duration} linear infinite forwards;
+export const loadingAnimationStyles = () => css`
+  animation: ${blink} 1s linear infinite forwards;
   background: linear-gradient(
     to right,
-    ${backgroundColor} 8%,
-    ${blinkColor} 18%,
-    ${backgroundColor} 33%
+    ${grey} 8%,
+    '#222' 18%,
+    ${grey} 33%
   );
   background-size: 800px 100%;
   position: relative;
 `
 export const PlaceholderStyled = styled(ItemContainer)`
   background: #111;
-  ${loadingAnimationStyles({})};
+  ${loadingAnimationStyles()};
 `
