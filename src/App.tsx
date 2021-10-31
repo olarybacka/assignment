@@ -2,6 +2,7 @@ import './App.css'
 import SplashScreen from 'containers/SplashScreen'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import Home from 'containers/Home'
+
 function App() {
   return (
     <div className="App">
